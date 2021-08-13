@@ -1,0 +1,43 @@
+<%- include ("../../partials/header.ejs")%>
+  <%- include ("../../partials/navbar.ejs")%>
+
+    <div class="container">
+
+      <hr>
+      <h2>Artigos</h2>
+      <a class="btn btn-success" href="/admin/articles/new"> Criar nova Artigos</a>
+      <hr>
+
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Slug</th>
+            <th>Categoria</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <%- include ("../../partials/footer.ejs")%>
+
+      <script>
+        function confirmarDelecao(event, form) {
+          event.preventDefault();// não deixa com que o formulário seja enviado sem a confirmação
+         var decision = confirm("Você tem certeza que vai deletar esta categoria?");
+         if(decision){
+           console.log("Eu escolhi deletar!");
+            form.submit();
+         }else{
+           console.log("Não quero deletar!")
+         }
+        }
+      </script>
