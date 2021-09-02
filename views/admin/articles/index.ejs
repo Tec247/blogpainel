@@ -20,7 +20,36 @@
         </thead>
 
         <tbody>
-          
+
+          <% articles.forEach(article=>{%>
+            <tr>
+
+              <td>
+                <%= article.id %>
+              </td>
+              <td>
+                <%= article.title %>
+              </td>
+              <td>
+                <%= article.slug %>
+              </td>
+              <td>
+                <%= article.category.title %>
+              </td>
+
+              <td>
+                <a class="btn btn-warning" href="/admin/articles/edit/<%= article.id %>">Editar</a>
+
+                <form method="POST" action="/articles/delete" style="display:inline;"
+                  onsubmit="confirmarDelecao(event,this)">
+
+                  <input type="hidden" name="id" value="<%= article.id%>">
+                  <button class="btn btn-danger">Excluir</button>
+                </form>
+              </td>
+            </tr>
+            <%})%>
+
         </tbody>
 
       </table>
@@ -32,12 +61,12 @@
       <script>
         function confirmarDelecao(event, form) {
           event.preventDefault();// não deixa com que o formulário seja enviado sem a confirmação
-         var decision = confirm("Você tem certeza que vai deletar esta categoria?");
-         if(decision){
-           console.log("Eu escolhi deletar!");
+          var decision = confirm("Você tem certeza que vai deletar este artigo?");
+          if (decision) {
+            console.log("Eu escolhi deletar!");
             form.submit();
-         }else{
-           console.log("Não quero deletar!")
-         }
+          } else {
+            console.log("Não quero deletar!")
+          }
         }
       </script>
